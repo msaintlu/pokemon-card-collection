@@ -5,7 +5,8 @@ const Card = ({ children }) => {
         style={{
             display: "flex",
             flexDirection: "column",
-            alignItems: "center"
+            alignItems: "center",
+            width: 150,
         }}
     >
     {children}

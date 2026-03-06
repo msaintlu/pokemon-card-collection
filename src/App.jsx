@@ -35,16 +35,25 @@ function App() {
 
   return (
     <>
-      <h1>THE POKEMON CARD COLLECTION</h1>
-      <Card>
-        <CardContent pokemon={pokemons[1]}/>
-      </Card>
+      <h1 style={{color:"white", fontWeight:"bolder", marginTop:14, fontSize: 66}}>THE POKEMON CARD COLLECTION</h1>
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr",
+          gap: "20px 20px",
+          //maxWidth: 150,
+        }}
+        >
+        {pokemons.map((pokemon, i) => (
+          <Card> <CardContent pokemon={pokemon}/> </Card>
+        ))};
+      </div>
       <button onClick={() => setCount((count) => count + 1)}>
         count is {count}
       </button>
       <p>
         Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+      </p>
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>

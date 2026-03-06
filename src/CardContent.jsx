@@ -13,7 +13,7 @@ const CardContent = ({pokemon}) => {
             style={{
             display: "grid",
             gridTemplateColumns: "1fr 1fr",
-            gap: "8px 20px",
+            gap: "2px 20px",
             maxWidth: 150,
             fontFamily: "sans-serif",
             justifyItems: "start", 

@@ -36,8 +36,8 @@
 }
 
 .pokemonName{
-  font-size: 26pt;
-  font-style: italic;
+  font-size: 20pt;
+  /*font-style: italic;*/
   font-weight: bold;
   line-height: 1;
 }
