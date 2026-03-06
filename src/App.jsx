@@ -3,6 +3,7 @@ import reactLogo from './assets/react.svg'
 import './App.css'
 import StatLine from "./StatLine"
 import Card from "./Card"
+import CardContent from "./CardContent"
 
 function App() {
   const [count, setCount] = useState(0)
@@ -36,22 +37,7 @@ function App() {
     <>
       <h1>THE POKEMON CARD COLLECTION</h1>
       <Card>
-        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png" className="picture" alt="Pokemon picture"/>
-        <p className="pokemonName">{pokemons[1].name}</p>
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "8px 20px",
-            maxWidth: 150,
-            fontFamily: "sans-serif",
-            justifyItems: "start", 
-          }}
-        >
-          <StatLine label="Type" value={pokemons[1].type} />
-          <StatLine label="HP" value={pokemons[1].hp} />
-          <StatLine label="Attack" value={pokemons[1].attack} />
-        </div>
+        <CardContent pokemon={pokemons[1]}/>
       </Card>
       <button onClick={() => setCount((count) => count + 1)}>
         count is {count}
