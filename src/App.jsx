@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import './App.css'
+import StatLine from "./StatLine"
+import Card from "./Card"
 
 function App() {
   const [count, setCount] = useState(0)
@@ -27,27 +29,13 @@ function App() {
     { id: 148, name: "Dragonair", type: "Dragon", hp: 61, attack: 84 },
   ];
 
-  // Faudra que je le mette dans son propre fichier
-  const StatLine = ({ label, value }) => {
-    return (
-      <>
-        <span style={{ color: "#888" }}>{label}</span>
-        <span style={{ fontWeight: "bold", fontSize: 18}}>{value}</span>
-      </>
-    );
-  };
-
   // Sprite image URL pattern:
   // `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png` 
 
   return (
     <>
       <h1>THE POKEMON CARD COLLECTION</h1>
-      <div className="card" 
-        style={{ 
-          display: "flex", 
-          flexDirection: "column", 
-          alignItems: "center" }}>
+      <Card>
         <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png" className="picture" alt="Pokemon picture"/>
         <p className="pokemonName">{pokemons[1].name}</p>
         <div
@@ -64,7 +52,7 @@ function App() {
           <StatLine label="HP" value={pokemons[1].hp} />
           <StatLine label="Attack" value={pokemons[1].attack} />
         </div>
-      </div>
+      </Card>
       <button onClick={() => setCount((count) => count + 1)}>
         count is {count}
       </button>
