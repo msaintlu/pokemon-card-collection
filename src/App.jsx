@@ -70,6 +70,7 @@ function App() {
           Filter by:
         </p>
         <div style={{ marginBottom: "32px" }}>
+          {/* BOUTONS FILTRES TYPES */}
           {types.map((type) => (
             <button
               className="filterButton"
@@ -102,7 +103,7 @@ function App() {
             const isFavorite = favorites.includes(pokemon.id);
             return (
               <Card>
-                {/* BOUTON FAVORI */}
+                {/* BOUTON COEUR FAVORI */}
                 <button
                   onClick={() => toggleFavorite(pokemon.id)}
                   style={{
@@ -118,7 +119,7 @@ function App() {
                 >
                   <FontAwesomeIcon
                     icon={isFavorite ? solidHeart : regularHeart}
-                    color={isFavorite ? "#d10303" : "none"}
+                    color={isFavorite ? "#d10303" : "#eeb90c"}
                   />
                 </button>{" "}
                 {/* INFOS POKEMON */}
