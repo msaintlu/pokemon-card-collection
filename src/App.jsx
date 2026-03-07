@@ -35,46 +35,63 @@ function App() {
     ? pokemons.filter((pokemon) => pokemon.type === selectedType)
     : pokemons;
 
+
   // Sprite image URL pattern:
   // `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`
 
   return (
     <>
-      <h1
-        style={{
-          color: "white",
-          fontWeight: "bolder",
-          marginTop: 14,
-          fontSize: 66,
-        }}
-      >
-        THE POKEMON CARD COLLECTION
-      </h1>
-      <p style={{ color: "white", fontWeight: "bold", fontSize: 22 }}>
-        Filter by:
-      </p>
-      {types.map((type) => (
-        <button 
-          className = "filterButton"
-          key = {type} 
-          onClick={() => setSelectedType((selectedType) => selectedType === type ? null : type)}>
-          {type}
-        </button>
-        ))}
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr",
-          gap: "20px 20px",
-        }}
-      >
-        {filteredPokemons
-          .map((pokemon, i) => (
+      <div>
+        {" "}
+        <h1
+          style={{
+            color: "white",
+            fontWeight: "bolder",
+            marginTop: 14,
+            fontSize: 66,
+          }}
+        >
+          THE POKEMON CARD COLLECTION
+        </h1>
+        <p style={{ color: "white", fontWeight: "bold", fontSize: 22 }}>
+          Filter by:
+        </p>
+        <div style={{ marginBottom: "32px" }}>
+          {types.map((type) => (
+            <button
+              className="filterButton"
+              key={type}
+              onClick={() => {
+                setSelectedType((selectedType) =>
+                  selectedType === type ? null : type
+                );
+                /*handleClick();*/
+              }}
+              style={{
+                backgroundColor:
+                  selectedType === type ? "rgb(209, 3, 3,0.6)" : "#fff8ba",
+              }}
+            >
+              {type}
+            </button>
+          ))}
+        </div>
+      </div>
+      <div style={{minHeight: "1000vh"}}>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr",
+            gap: "20px 20px",
+          }}
+        >
+          {filteredPokemons.map((pokemon, i) => (
             <Card>
               {" "}
               <CardContent pokemon={pokemon} />{" "}
             </Card>
           ))}
+        </div>
       </div>
     </>
   );
