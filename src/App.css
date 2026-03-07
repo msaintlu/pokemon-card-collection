@@ -18,15 +18,15 @@
 }
 
 .card {
-  background-color:rgb(255, 255, 255);
+  background-color:#ffffff;
   padding: 2em;
   border-radius: 20px;
   border: 1px solid transparent;
   transition: border-color 0.25s;
 }
 .card:hover{
-  filter: drop-shadow(0 0 4px rgb(209, 3, 3));
-  border: 1px solid rgb(209, 3, 3);
+  filter: drop-shadow(0 0 4px #d10303);
+  border: 1px solid #d10303;
 }
 
 .picture{
@@ -42,6 +42,19 @@
   line-height: 1;
 }
 
-.read-the-docs {
-  color: #888;
+.filterButton {
+  border-radius: 8px;
+  border: none;
+  padding: 2px 12px;
+  margin: 0px 8px 32px;
+  font-size: 16pt;
+  font-weight: 500;
+  font-family: inherit;
+  /*background-color: #fff8ba;*/
+  color: #3b3500;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+.filterButton:hover{
+  filter: drop-shadow(0 0 4px #d10303);
 }

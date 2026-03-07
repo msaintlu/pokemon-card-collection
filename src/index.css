@@ -36,21 +36,22 @@ h1 {
   line-height: 1.1;
 }
 
-button {
+/*button {
   border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
+  border: 10px solid "white";
+  padding: 2px 12px;
+  margin: 0px 8px 32px;
+  font-size: 16pt;
+  font-weight: 600;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: #fff8ba;
   cursor: pointer;
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
-}
-button:focus,
+  border-color:  rgb(209, 3, 3));
+}*/
+/*button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
-}
+}*/

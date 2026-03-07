@@ -6,7 +6,6 @@ import Card from "./Card"
 import CardContent from "./CardContent"
 
 function App() {
-  const [count, setCount] = useState(0)
   const pokemons = [
     { id: 1, name: "Bulbasaur", type: "Grass", hp: 45, attack: 49 },
     { id: 4, name: "Charmander", type: "Fire", hp: 39, attack: 52 },
@@ -29,36 +28,56 @@ function App() {
     { id: 130, name: "Gyarados", type: "Water", hp: 95, attack: 125 },
     { id: 148, name: "Dragonair", type: "Dragon", hp: 61, attack: 84 },
   ];
+  // Filtre les Pokémon selon le type sélectionné
+  const types = [...new Set(pokemons.map((pokemon) => pokemon.type))];
+  const [selectedType, setSelectedType] = useState(null);
+  const filteredPokemons = selectedType
+    ? pokemons.filter((pokemon) => pokemon.type === selectedType)
+    : pokemons;
 
   // Sprite image URL pattern:
-  // `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png` 
+  // `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`
 
   return (
     <>
-      <h1 style={{color:"white", fontWeight:"bolder", marginTop:14, fontSize: 66}}>THE POKEMON CARD COLLECTION</h1>
+      <h1
+        style={{
+          color: "white",
+          fontWeight: "bolder",
+          marginTop: 14,
+          fontSize: 66,
+        }}
+      >
+        THE POKEMON CARD COLLECTION
+      </h1>
+      <p style={{ color: "white", fontWeight: "bold", fontSize: 22 }}>
+        Filter by:
+      </p>
+      {types.map((type) => (
+        <button 
+          className = "filterButton"
+          key = {type} 
+          onClick={() => setSelectedType((selectedType) => selectedType === type ? null : type)}>
+          {type}
+        </button>
+        ))}
       <div
         style={{
           display: "grid",
           gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr",
           gap: "20px 20px",
-          //maxWidth: 150,
         }}
-        >
-        {pokemons.map((pokemon, i) => (
-          <Card> <CardContent pokemon={pokemon}/> </Card>
-        ))};
+      >
+        {filteredPokemons
+          .map((pokemon, i) => (
+            <Card>
+              {" "}
+              <CardContent pokemon={pokemon} />{" "}
+            </Card>
+          ))}
       </div>
-      <button onClick={() => setCount((count) => count + 1)}>
-        count is {count}
-      </button>
-      <p>
-        Edit <code>src/App.jsx</code> and save to test HMR
-      </p>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
-  )
+  );
 }
 
 export default App
