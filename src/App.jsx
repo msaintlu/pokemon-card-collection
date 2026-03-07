@@ -4,6 +4,9 @@ import './App.css'
 import StatLine from "./StatLine"
 import Card from "./Card"
 import CardContent from "./CardContent"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart as solidHeart } from '@fortawesome/free-solid-svg-icons'; // Cœur plein (favori)
+import { faHeart as regularHeart } from '@fortawesome/free-regular-svg-icons'; // Cœur vide (non favori)
 
 function App() {
   const pokemons = [
@@ -34,13 +37,22 @@ function App() {
   const filteredPokemons = selectedType
     ? pokemons.filter((pokemon) => pokemon.type === selectedType)
     : pokemons;
-
+  // Favoris
+  const [favorites, setFavorites] = useState([]);
+  // toggleFavorites est appelée au clique sur le coeur : 
+  // ajoute l'id du Pokemon si n'est pas dans les favoris, et le retire s'il est dans les favoris
+  const toggleFavorite = (id) => {
+    setFavorites((prev) =>
+      prev.includes(id) ? prev.filter((favId) => favId !== id) : [...prev, id]
+    );
+  };
 
   // Sprite image URL pattern:
   // `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`
 
   return (
     <>
+      {/* TITLE + BUTTONS */}
       <div>
         {" "}
         <h1
@@ -53,6 +65,7 @@ function App() {
         >
           THE POKEMON CARD COLLECTION
         </h1>
+        {/* BUTTONS */}
         <p style={{ color: "white", fontWeight: "bold", fontSize: 22 }}>
           Filter by:
         </p>
@@ -65,7 +78,6 @@ function App() {
                 setSelectedType((selectedType) =>
                   selectedType === type ? null : type
                 );
-                /*handleClick();*/
               }}
               style={{
                 backgroundColor:
@@ -77,7 +89,8 @@ function App() {
           ))}
         </div>
       </div>
-      <div style={{minHeight: "1000vh"}}>
+      {/* CARDS */}
+      <div style={{ minHeight: "220vh" }}>
         <div
           style={{
             display: "grid",
@@ -85,12 +98,33 @@ function App() {
             gap: "20px 20px",
           }}
         >
-          {filteredPokemons.map((pokemon, i) => (
-            <Card>
-              {" "}
-              <CardContent pokemon={pokemon} />{" "}
-            </Card>
-          ))}
+          {filteredPokemons.map((pokemon, i) => {/*(*/
+            const isFavorite = favorites.includes(pokemon.id);
+            return (
+              <Card>
+                {/* BOUTON FAVORI */}
+                <button
+                  onClick={() => toggleFavorite(pokemon.id)}
+                  style={{
+                    position: "absolute",
+                    top: "8px",
+                    right: "8px",
+                    background: "none",
+                    border: "none",
+                    cursor: "pointer",
+                    fontSize: "20px",
+                    zIndex: 1,
+                  }}
+                >
+                  <FontAwesomeIcon
+                    icon={isFavorite ? solidHeart : regularHeart}
+                    color={isFavorite ? "#d10303" : "none"}
+                  />
+                </button>{" "}
+                {/* INFOS POKEMON */}
+                <CardContent pokemon={pokemon} />{" "}
+              </Card>
+            );})}
         </div>
       </div>
     </>

@@ -1,29 +1,32 @@
 import StatLine from "./StatLine" 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart as solidHeart } from '@fortawesome/free-solid-svg-icons'; // Cœur plein (favori)
+import { faHeart as regularHeart } from '@fortawesome/free-regular-svg-icons'; // Cœur vide (non favori)
 
 const CardContent = ({pokemon}) => {
-    return(
-        <>
-        <img 
-            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
-            className="picture" 
-            alt="Pokemon picture"
+   return (
+      <>
+         <img
+          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
+          className="picture"
+          alt="Pokemon picture"
         />
         <p className="pokemonName">{pokemon.name}</p>
         <div
-            style={{
+          style={{
             display: "grid",
             gridTemplateColumns: "1fr 1fr",
             gap: "2px 20px",
             maxWidth: 150,
             fontFamily: "sans-serif",
-            justifyItems: "start", 
-            }}
+            justifyItems: "start",
+          }}
         >
-            <StatLine label="Type" value={pokemon.type} />
-            <StatLine label="HP" value={pokemon.hp} />
-            <StatLine label="Attack" value={pokemon.attack} />
+          <StatLine label="Type" value={pokemon.type} />
+          <StatLine label="HP" value={pokemon.hp} />
+          <StatLine label="Attack" value={pokemon.attack} />
         </div>
-        </>
+      </>
     );
 };
 
