@@ -31,21 +31,26 @@ function App() {
     { id: 130, name: "Gyarados", type: "Water", hp: 95, attack: 125 },
     { id: 148, name: "Dragonair", type: "Dragon", hp: 61, attack: 84 },
   ];
-  // Filtre les Pokémon selon le type sélectionné
-  const types = [...new Set(pokemons.map((pokemon) => pokemon.type))];
+
   const [selectedType, setSelectedType] = useState(null);
-  const filteredPokemons = selectedType
-    ? pokemons.filter((pokemon) => pokemon.type === selectedType)
-    : pokemons;
-  // Favoris
   const [favorites, setFavorites] = useState([]);
-  // toggleFavorites est appelée au clique sur le coeur : 
+  const [showFavorites, setShowFavorites] = useState(false);
+
+  const types = [...new Set(pokemons.map((pokemon) => pokemon.type))];
+
+  // toggleFavorites est appelée au clique sur le coeur :
   // ajoute l'id du Pokemon si n'est pas dans les favoris, et le retire s'il est dans les favoris
   const toggleFavorite = (id) => {
     setFavorites((prev) =>
       prev.includes(id) ? prev.filter((favId) => favId !== id) : [...prev, id]
     );
   };
+
+  // || = "ou". Si selectedType est false, !selectedType est true dc tous les pokemons passent le fitre
+  const filteredPokemons = pokemons
+    .filter((pokemon) => !selectedType || pokemon.type === selectedType)
+    .filter((pokemon) => !showFavorites || favorites.includes(pokemon.id));
+
 
   // Sprite image URL pattern:
   // `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`
@@ -88,6 +93,18 @@ function App() {
               {type}
             </button>
           ))}
+          {/* BOUTON FILTRE FAVORITES */}
+          <button
+            className="filterButton"
+            onClick={() => setShowFavorites((prev) => !prev)}
+            style={{
+              backgroundColor: showFavorites
+                ? "rgb(209, 3, 3,0.6)"
+                : "rgb(209, 3, 3,0.4)",
+            }}
+          >
+            Favorites
+          </button>
         </div>
       </div>
       {/* CARDS */}
@@ -99,7 +116,8 @@ function App() {
             gap: "20px 20px",
           }}
         >
-          {filteredPokemons.map((pokemon, i) => {/*(*/
+          {filteredPokemons.map((pokemon, i) => {
+            /*(*/
             const isFavorite = favorites.includes(pokemon.id);
             return (
               <Card>
@@ -125,7 +143,8 @@ function App() {
                 {/* INFOS POKEMON */}
                 <CardContent pokemon={pokemon} />{" "}
               </Card>
-            );})}
+            );
+          })}
         </div>
       </div>
     </>
